@@ -10,6 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="countries")
 public class Country {
@@ -24,23 +31,5 @@ public class Country {
 	
 	@OneToMany(mappedBy="country")
 	private List<Author> authors;
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public List<Author> getAuthors() {
-		return authors;
-	}
-	public void setAuthors(List<Author> authors) {
-		this.authors = authors;
-	}
+
 }

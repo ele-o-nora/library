@@ -14,6 +14,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name="books")
 public class Book {
@@ -40,41 +47,4 @@ public class Book {
 	@OneToMany(mappedBy="book")
 	private List<Checkout> checkedList;
 	
-	public int getAvailable() {
-		return available;
-	}
-	public void setAvailable(int available) {
-		this.available = available;
-	}
-	
-	public List<Checkout> getCheckedList() {
-		return checkedList;
-	}
-	public void setCheckedList(List<Checkout> checkedList) {
-		this.checkedList = checkedList;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public Set<Author> getAuthors() {
-		return authors;
-	}
-	public void setAuthors(Set<Author> authors) {
-		this.authors = authors;
-	}
-	public Set<Genre> getGenres() {
-		return genres;
-	}
-	public void setGenres(Set<Genre> genres) {
-		this.genres = genres;
-	}
 }
