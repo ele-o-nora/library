@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import library.models.Classroom;
 import library.models.Student;
@@ -29,10 +32,9 @@ public class ClassroomController {
 		return "classrooms";
 	}
 	
-	@GetMapping({"/classroom/{name}"})
+	@RequestMapping({"/classroom/{name}"})
 	public String studentsList(@PathVariable("name") String name, Model model) {
-		Classroom c = classroomService.getClassroom(name);
-		List<Student> students = classroomService.getAllStudents(c);
+		List<Student> students = classroomService.getAllStudents(name);
 		model.addAttribute("students", students);
 		model.addAttribute("classroomName", name);
 		return "classroom";
@@ -45,16 +47,13 @@ public class ClassroomController {
 	}
 	
 	@PostMapping("/add")
-	public String addStudent(@ModelAttribute("classroomName") String classroomName, 
+	public ModelAndView addStudent(@ModelAttribute("classroomName") String classroomName, 
 			@ModelAttribute("firstName") String firstName, 
 			@ModelAttribute("lastName") String lastName, 
 			Model model) {
-		Classroom c = classroomService.getClassroom(classroomName);
-		Student student = new Student();
-		student.setFirstName(firstName);
-		student.setLastName(lastName);
-		student.setClassroom(c);
-		classroomService.addStudent(student);
-		return "redirect:/classroom/" + classroomName;
+		classroomService.addStudent(firstName, lastName, classroomName);
+		RedirectView redirectView = new RedirectView("/classroom/".concat(classroomName));
+		redirectView.setExposeModelAttributes(false);
+		return new ModelAndView(redirectView);
 	}
 }

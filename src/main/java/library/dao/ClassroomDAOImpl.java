@@ -2,16 +2,17 @@ package library.dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 
 import library.models.Classroom;
 import library.models.Student;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-@Repository
+@Component
 @RequiredArgsConstructor(onConstructor=@__(@Autowired))
 public class ClassroomDAOImpl implements ClassroomDAO {
 	
@@ -19,24 +20,37 @@ public class ClassroomDAOImpl implements ClassroomDAO {
 	
 	@Override
 	public List<Classroom> getAllClassrooms() {
-		return sessionFactory.getCurrentSession().createQuery("from Classroom c order by c.id", Classroom.class).getResultList();
+		Session session = sessionFactory.openSession();
+		List<Classroom> list = session.createQuery("from Classroom c order by c.id", Classroom.class).getResultList();
+		session.close();
+		return list;
 	}
 	
 	@Override
 	public Classroom getClassroom(String name) {
-		return sessionFactory.getCurrentSession().createQuery("from Classroom c where c.name=:n", Classroom.class)
+		Session session = sessionFactory.openSession();
+		Classroom c = session.createQuery("from Classroom c where c.name=:n", Classroom.class)
 				.setParameter("n", name).getSingleResult();
+		session.close();
+		return c;
 	}
 
 	@Override
 	public void addStudent(Student student) {
-		sessionFactory.getCurrentSession().persist(student);
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.persist(student);
+        session.getTransaction().commit();
+        session.close();
 	}
 
 	@Override
 	public List<Student> getAllStudents(Classroom classroom) {
-		return sessionFactory.getCurrentSession().createQuery("from Student s where s.classroom =:c", Student.class)
+		Session session = sessionFactory.openSession();
+		List<Student> list =  session.createQuery("from Student s where s.classroom =:c", Student.class)
 				.setParameter("c", classroom).getResultList();
+		session.close();
+		return list;
 	}
 
 }

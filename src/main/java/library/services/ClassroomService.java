@@ -7,7 +7,6 @@ import library.models.Student;
 
 public interface ClassroomService {
 	List<Classroom> getAllClassrooms();
-	Classroom getClassroom(String name);
-	void addStudent(Student student);
-	List<Student> getAllStudents(Classroom classroom);
+	void addStudent(String firstName, String lastName, String classroomName);
+	List<Student> getAllStudents(String classroomName);
 }
