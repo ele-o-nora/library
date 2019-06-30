@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -25,14 +24,14 @@ public class ClassroomController {
 	
 	private final @NonNull ClassroomService classroomService;
 	
-	@GetMapping({"/", "/classrooms"})
+	@GetMapping("/classrooms")
 	public String classroomList(Model model) {
 		List<Classroom> classrooms = classroomService.getAllClassrooms();
 		model.addAttribute("classrooms", classrooms);
 		return "classrooms";
 	}
 	
-	@RequestMapping({"/classroom/{name}"})
+	@GetMapping("/classroom/{name}")
 	public String studentsList(@PathVariable("name") String name, Model model) {
 		List<Student> students = classroomService.getAllStudents(name);
 		model.addAttribute("students", students);
