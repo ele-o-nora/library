@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Classrooms</title>
+<title>Students</title>
 <%@ page isELIgnored="false"%>
 </head>
 

@@ -12,14 +12,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @ComponentScan(basePackages = "library")
-@EnableTransactionManagement
 @RequiredArgsConstructor(onConstructor=@__(@Autowired))
 @PropertySource(value="classpath:db.properties")
 public class HibernateConfig {

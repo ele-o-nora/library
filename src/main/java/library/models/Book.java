@@ -23,7 +23,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name="books")
-public class Book {
+public class Book implements Comparable<Book> {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -46,5 +46,9 @@ public class Book {
 	
 	@OneToMany(mappedBy="book")
 	private List<Checkout> checkedList;
-	
+
+	@Override
+	public int compareTo(Book o) {
+		return title.compareTo(o.title);
+	}
 }

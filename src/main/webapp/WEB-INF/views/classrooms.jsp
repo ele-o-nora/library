@@ -29,5 +29,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	
+	<a href="/">Back to main</a>
 </body>
 </html>
