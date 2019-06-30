@@ -10,7 +10,7 @@ import library.models.Genre;
 public interface BookDAO {
 	List<Book> getAllBooksByGenre(Genre genre);
 	List<Book> getAllBooksByAuthor(Author author);
-	List<Author> getAllAuthorsFromCountry(Country country);
+	List<Book> getAllBooksFromCountry(Country country);
 	List<Genre> getAllGenres();
 	List<Country> getAllCountries();
 	List<Author> getAllAuthors();

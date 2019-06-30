@@ -1,7 +1,6 @@
 package library.controllers;
 
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,7 +50,7 @@ public class BookController {
 	
 	@GetMapping("/bycountry")
 	public String byCountry(@ModelAttribute("country") String country, Model model) {
-		Set<Book> books = bookService.getAllBooksFromCountry(country);
+		List<Book> books = bookService.getAllBooksFromCountry(country);
 		model.addAttribute("country", country);
 		model.addAttribute("books", books);
 		return "books";

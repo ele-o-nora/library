@@ -37,9 +37,9 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	@Override
-	public List<Author> getAllAuthorsFromCountry(Country country) {
+	public List<Book> getAllBooksFromCountry(Country country) {
 		Session session = sessionFactory.openSession();
-		List<Author> authors = session.createQuery("from Author a where a.country=:c", Author.class).setParameter("c", country).getResultList();
+		List<Book> authors = session.createQuery("select distinct b from Book b join b.authors a where a.country=:c order by b.title", Book.class).setParameter("c", country).getResultList();
 		session.close();
 		return authors;
 	}

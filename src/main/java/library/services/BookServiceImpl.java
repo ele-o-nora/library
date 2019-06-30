@@ -1,8 +1,6 @@
 package library.services;
 
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,13 +33,9 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public Set<Book> getAllBooksFromCountry(String country) {
+	public List<Book> getAllBooksFromCountry(String country) {
 		Country c = bookDAO.getCountry(country);
-		List<Author> authors = bookDAO.getAllAuthorsFromCountry(c);
-		Set<Book> books = new TreeSet<Book>();
-		for (Author a: authors) {
-			books.addAll(bookDAO.getAllBooksByAuthor(a));
-		}
+		List<Book> books = bookDAO.getAllBooksFromCountry(c);
 		return books;
 	}
 
