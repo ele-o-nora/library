@@ -25,8 +25,8 @@
 				<td>${student.firstName}</td>
 				<td>${student.lastName}</td>
 				<td>
-				List all checked books<br/>
-				Checkout new book
+				<a href="/books/${student.id}">List all checked books</a><br/>
+				<a href="/findbook?studentId=${student.id}">Checkout new book</a>
 				</td>
 			</tr>
 		</c:forEach>

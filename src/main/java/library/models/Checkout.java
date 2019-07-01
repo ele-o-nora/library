@@ -24,6 +24,7 @@ import lombok.Setter;
 public class Checkout {
 
 	@Embeddable
+	@NoArgsConstructor
 	public static class Key implements Serializable {
 		
 		static final long serialVersionUID = 1;
@@ -49,7 +50,7 @@ public class Checkout {
 	}
 
 	@EmbeddedId
-	private Key id;
+	private Key id = new Key();
 
 	@ManyToOne
 	@JoinColumn(name = "book_id")

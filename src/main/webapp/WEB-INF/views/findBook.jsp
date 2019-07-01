@@ -10,9 +10,10 @@
 </head>
 
 <body>
-
+	
 	<h2>Find book</h2>
 	<form action="/bygenre" method="GET">
+		<c:if test="${!empty studentId}"><input type="hidden" name="studentId" value="${studentId}"></c:if>
 		<select name="genre">
 		<c:forEach var="genre" items="${genres}">
 			<option value = "${genre.name}">${genre.name}</option>
@@ -22,6 +23,7 @@
 	</form>
 	
 		<form action="/bycountry" method="GET">
+		<c:if test="${!empty studentId}"><input type="hidden" name="studentId" value="${studentId}"></c:if>
 		<select name="country">
 		<c:forEach var="country" items="${countries}">
 			<option value = "${country.name}">${country.name}</option>
@@ -31,6 +33,7 @@
 	</form>
 	
 		<form action="/byauthor" method="GET">
+		<c:if test="${!empty studentId}"><input type="hidden" name="studentId" value="${studentId}"></c:if>
 		<select name="authorName">
 		<c:forEach var="author" items="${authors}">
 			<option value = "${author.firstName} ${author.lastName}">${author.firstName} ${author.lastName}</option>
