@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import library.dao.ClassroomDAO;
 import library.models.Classroom;
@@ -18,11 +20,14 @@ public class ClassroomServiceImpl implements ClassroomService {
 	private final @NonNull ClassroomDAO classroomDAO;
 	
 	@Override
-	public List<Classroom> getAllClassrooms() {
-		return classroomDAO.getAllClassrooms();
+	@Transactional(readOnly=true)
+	public void getAllClassrooms(Model model) {
+		List<Classroom> classrooms =  classroomDAO.getAllClassrooms();
+		model.addAttribute("classrooms", classrooms);
 	}
 
 	@Override
+	@Transactional
 	public void addStudent(String firstName, String lastName, String classroomName) {
 		Classroom c = classroomDAO.getClassroom(classroomName);
 		Student student = new Student();
@@ -33,9 +38,12 @@ public class ClassroomServiceImpl implements ClassroomService {
 	}
 
 	@Override
-	public List<Student> getAllStudents(String classroomName) {
+	@Transactional(readOnly=true)
+	public void getAllStudents(String classroomName, Model model) {
 		Classroom c = classroomDAO.getClassroom(classroomName);
-		return classroomDAO.getAllStudents(c);
+		List<Student> students = classroomDAO.getAllStudents(c);
+		model.addAttribute("students", students);
+		model.addAttribute("classroomName", classroomName);
 	}
 
 }

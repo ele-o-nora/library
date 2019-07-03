@@ -1,11 +1,9 @@
 package library.services;
 
-import java.util.List;
-
-import library.models.Book;
+import org.springframework.ui.Model;
 
 public interface CheckoutService {
 	void checkOutBook(int studentId, int bookId);
-	int returnBook(int studentId, int bookId);
-	List<Book> getAllCheckedBooks(int studentId);
+	void returnBook(int studentId, int bookId, Model model);
+	void listCheckedBooks(Model model, int studentId, int fine);
 }

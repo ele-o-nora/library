@@ -10,4 +10,5 @@ public interface ClassroomDAO {
 	Classroom getClassroom(String name);
 	void addStudent(Student student);
 	List<Student> getAllStudents(Classroom classroom);
+	Student getStudent(int id);
 }

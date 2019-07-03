@@ -1,7 +1,5 @@
 package library.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import library.models.Classroom;
-import library.models.Student;
 import library.services.ClassroomService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -26,16 +22,13 @@ public class ClassroomController {
 	
 	@GetMapping("/classrooms")
 	public String classroomList(Model model) {
-		List<Classroom> classrooms = classroomService.getAllClassrooms();
-		model.addAttribute("classrooms", classrooms);
+		classroomService.getAllClassrooms(model);
 		return "classrooms";
 	}
 	
 	@GetMapping("/classroom/{name}")
 	public String studentsList(@PathVariable("name") String name, Model model) {
-		List<Student> students = classroomService.getAllStudents(name);
-		model.addAttribute("students", students);
-		model.addAttribute("classroomName", name);
+		classroomService.getAllStudents(name, model);
 		return "classroom";
 	}
 	

@@ -1,12 +1,9 @@
 package library.services;
 
-import java.util.List;
-
-import library.models.Classroom;
-import library.models.Student;
+import org.springframework.ui.Model;
 
 public interface ClassroomService {
-	List<Classroom> getAllClassrooms();
+	void getAllClassrooms(Model model);
 	void addStudent(String firstName, String lastName, String classroomName);
-	List<Student> getAllStudents(String classroomName);
+	void getAllStudents(String classroomName, Model model);
 }

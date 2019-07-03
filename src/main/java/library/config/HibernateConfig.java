@@ -11,13 +11,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
 @ComponentScan(basePackages = "library")
+@EnableTransactionManagement
 @RequiredArgsConstructor(onConstructor=@__(@Autowired))
 @PropertySource(value="classpath:db.properties")
 public class HibernateConfig {
@@ -47,6 +50,13 @@ public class HibernateConfig {
 		sessionFactory.setPackagesToScan("library.models");
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		return sessionFactory;
+	}
+	
+	@Bean
+	public HibernateTransactionManager transactionManager() {
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+		transactionManager.setSessionFactory(sessionFactory().getObject());
+		return transactionManager;
 	}
 	
 }

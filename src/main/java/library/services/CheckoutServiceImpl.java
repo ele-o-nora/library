@@ -6,9 +6,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import library.dao.BookDAO;
 import library.dao.CheckoutDAO;
+import library.dao.ClassroomDAO;
 import library.models.Book;
 import library.models.Checkout;
 import library.models.Student;
@@ -21,30 +24,49 @@ public class CheckoutServiceImpl implements CheckoutService {
 
 	private final @NonNull CheckoutDAO checkoutDAO;
 	private final @NonNull BookDAO bookDAO;
+	private final @NonNull ClassroomDAO classroomDAO;
 
 	@Override
+	@Transactional
 	public void checkOutBook(int studentId, int bookId) {
-		checkoutDAO.addCheckedBook(studentId, bookId);
-		bookDAO.updateBookAvailability(bookId, -1);
+		Book book = bookDAO.getBook(bookId);
+		Student student  = classroomDAO.getStudent(studentId);
+		Checkout checkout = new Checkout();
+		checkout.setBook(book);
+		checkout.setStudent(student);
+		checkout.setCheckoutDate(LocalDate.now());
+		checkoutDAO.addCheckedBook(checkout);
+		book.setAvailable(book.getAvailable() - 1);
+		bookDAO.updateBook(book);
 	}
 
 	@Override
-	public int returnBook(int studentId, int bookId) {
-		Student student = checkoutDAO.getStudent(studentId);
-		Book book = checkoutDAO.getBook(bookId);
+	@Transactional
+	public void returnBook(int studentId, int bookId, Model model) {
+		Student student = classroomDAO.getStudent(studentId);
+		Book book = bookDAO.getBook(bookId);
 		Checkout checkout = checkoutDAO.getCheckedBook(student, book);
 		checkoutDAO.removeCheckedBook(checkout);
-		bookDAO.updateBookAvailability(bookId, 1);
+		book.setAvailable(book.getAvailable() + 1);
+		bookDAO.updateBook(book);
 		LocalDate today = LocalDate.now();
 		LocalDate checkoutDate = checkout.getCheckoutDate();
-		return calculateFine(today, checkoutDate);
+		int fine = calculateFine(today, checkoutDate);
+		if (fine > 0) {
+			model.addAttribute("fine", fine);
+		}
 	}
 
 	@Override
-	public List<Book> getAllCheckedBooks(int studentId) {
-		Student student = checkoutDAO.getStudent(studentId);
+	@Transactional(readOnly=true)
+	public void listCheckedBooks(Model model, int studentId, int fine) {
+		Student student = classroomDAO.getStudent(studentId);
 		List<Book> books = checkoutDAO.getAllCheckedBooks(student);
-		return books;
+		if (fine > 0) {
+			model.addAttribute("fine", fine);
+		}
+		model.addAttribute("studentId", studentId);
+		model.addAttribute("books", books);
 	}
 
 	private int calculateFine(LocalDate returnDate, LocalDate checkoutDate) {

@@ -7,9 +7,7 @@ import library.models.Checkout;
 import library.models.Student;
 
 public interface CheckoutDAO {
-	Student getStudent(int id);
-	Book getBook(int id);
-	void addCheckedBook(int studentId, int bookId);
+	void addCheckedBook(Checkout checkout);
 	void removeCheckedBook(Checkout checkout);
 	Checkout getCheckedBook(Student student, Book book);
 	List<Book> getAllCheckedBooks(Student student);

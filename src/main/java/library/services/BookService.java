@@ -1,17 +1,10 @@
 package library.services;
 
-import java.util.List;
-
-import library.models.Author;
-import library.models.Book;
-import library.models.Country;
-import library.models.Genre;
+import org.springframework.ui.Model;
 
 public interface BookService {
-	List<Book> getAllBooksByGenre(String genre);
-	List<Book> getAllBooksByAuthor(String authorName);
-	List<Book> getAllBooksFromCountry(String country);
-	List<Genre> getAllGenres();
-	List<Country> getAllCountries();
-	List<Author> getAllAuthors();
+	void listAllBooksByGenre(Model model, String genre, int studentId);
+	void listAllBooksByAuthor(Model model, String authorName, int studentId);
+	void listAllBooksFromCountry(Model model, String country, int studentId);
+	void listSearchVariants(Model model, int studentId);
 }
