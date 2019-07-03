@@ -17,4 +17,5 @@ public interface BookDAO {
 	Author getAuthor(String firstName, String lastName);
 	Genre getGenre(String genre);
 	Country getCountry(String country);
+	void updateBookAvailability(int bookId, int change);
 }

@@ -13,5 +13,4 @@ public interface CheckoutDAO {
 	void removeCheckedBook(Checkout checkout);
 	Checkout getCheckedBook(Student student, Book book);
 	List<Book> getAllCheckedBooks(Student student);
-	void updateBookAvailability(int bookId, int change);
 }

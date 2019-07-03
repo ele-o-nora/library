@@ -92,5 +92,16 @@ public class BookDAOImpl implements BookDAO {
 		session.close();
 		return c;
 	}
+	
+	@Override
+	public void updateBookAvailability(int bookId, int change) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Book book  = session.get(Book.class, bookId);
+		book.setAvailable(book.getAvailable() + change);
+		session.update(book);
+		session.getTransaction().commit();
+		session.close();
+	}
 
 }

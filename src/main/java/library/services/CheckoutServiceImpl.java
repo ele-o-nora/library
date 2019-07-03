@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import library.dao.BookDAO;
 import library.dao.CheckoutDAO;
 import library.models.Book;
 import library.models.Checkout;
@@ -19,11 +20,12 @@ import lombok.RequiredArgsConstructor;
 public class CheckoutServiceImpl implements CheckoutService {
 
 	private final @NonNull CheckoutDAO checkoutDAO;
+	private final @NonNull BookDAO bookDAO;
 
 	@Override
 	public void checkOutBook(int studentId, int bookId) {
 		checkoutDAO.addCheckedBook(studentId, bookId);
-		checkoutDAO.updateBookAvailability(bookId, -1);
+		bookDAO.updateBookAvailability(bookId, -1);
 	}
 
 	@Override
@@ -32,7 +34,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 		Book book = checkoutDAO.getBook(bookId);
 		Checkout checkout = checkoutDAO.getCheckedBook(student, book);
 		checkoutDAO.removeCheckedBook(checkout);
-		checkoutDAO.updateBookAvailability(bookId, 1);
+		bookDAO.updateBookAvailability(bookId, 1);
 		LocalDate today = LocalDate.now();
 		LocalDate checkoutDate = checkout.getCheckoutDate();
 		return calculateFine(today, checkoutDate);

@@ -72,21 +72,10 @@ public class CheckoutDAOImpl implements CheckoutDAO {
 	@Override
 	public List<Book> getAllCheckedBooks(Student student) {
 		Session session = sessionFactory.openSession();
-		List<Book> books = session.createQuery("select b from Book b join b.checkedList ch on ch.student=:s", Book.class)
+		List<Book> books = session.createQuery("select b from Book b join b.checkedList ch on ch.student=:s order by b.title", Book.class)
 				.setParameter("s", student).getResultList();
 		session.close();
 		return books;
-	}
-
-	@Override
-	public void updateBookAvailability(int bookId, int change) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		Book book  = session.get(Book.class, bookId);
-		book.setAvailable(book.getAvailable() + change);
-		session.update(book);
-		session.getTransaction().commit();
-		session.close();
 	}
 
 }
