@@ -5,14 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
 <title>Students</title>
 <%@ page isELIgnored="false"%>
 </head>
 
-<body>
+<body class="text-center">
 
-	<h2>Students of class ${classroomName}</h2>
-	<table>
+	<h2 class="text-muted">Students of class ${classroomName}</h2>
+	<table class="table table-striped">
 		<tr>
 			<th>id</th>
 			<th>first name</th>
@@ -21,16 +22,17 @@
 		</tr>
 		<c:forEach var="student" items="${students}">
 			<tr>
-				<td>${student.id}</td>
-				<td>${student.firstName}</td>
-				<td>${student.lastName}</td>
+				<td class="align-middle">${student.id}</td>
+				<td class="align-middle">${student.firstName}</td>
+				<td class="align-middle">${student.lastName}</td>
 				<td>
-				<a href="/books/${student.id}">List all checked books</a><br/>
-				<a href="/findbook?studentId=${student.id}">Checkout new book</a>
+				<a href="/books/${student.id}" class="btn btn-outline-secondary btn-sm m-1">List all checked books</a><br/>
+				<a href="/findbook?studentId=${student.id}" class="btn btn-outline-secondary btn-sm m-1">Checkout new book</a>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
-	<a href="/classrooms">Back to classrooms list</a>
+	<a href="/classrooms" class="btn btn-secondary">Back to classrooms list</a>
+	
 </body>
 </html>

@@ -5,15 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
 <title>Library</title>
 <%@ page isELIgnored="false"%>
 </head>
 
-<body>
+<body class="text-center">
 
-	<h2>Library</h2>
-	<a href="/classrooms">List all classrooms</a><br/>
-	<a href="/findbook">Find books</a>
+	<h2 class="text-warning">Library</h2>
+	<a href="/classrooms" class="btn btn-secondary">List all classrooms</a>
+	<a href="/findbook" class="btn btn-secondary">Find books</a>
 
 </body>
 </html>

@@ -5,22 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Classrooms</title>
+<link rel="stylesheet"
+	href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+<title>Add student</title>
 <%@ page isELIgnored="false"%>
 </head>
 
-<body>
+<body class="text-center">
 
-	<h2>Add new student</h2>
+	<h2 class="text-muted">Add new student</h2>
 	<form action="/add" method="POST">
-		<input type="hidden" name = "classroomName" value="${classroomName}"/>
-		<label for="firstName">First name</label>
-		<input type="text" name="firstName" id="firstName"/>
-		<br/>
-		<label for="firstName">Last name</label>
-		<input type="text" name="lastName" id="lastName"/>
-		<br/>
-		<input type="submit" value="Add student"/>
+		<input type="hidden" name="classroomName" value="${classroomName}" />
+		<div class="form-row">
+			<div class="col">
+				<input type="text" class="form-control" name="firstName"
+					id="firstName" placeholder="First name" />
+			</div>
+			<div class="col">
+				<input type="text" class="form-control" name="lastName"
+					id="lastName" placeholder="Last name" />
+			</div>
+		</div>
+		<input type="submit" value="Add student"
+			class="btn btn-outline-secondary m-1" />
 	</form>
 
 </body>

@@ -5,31 +5,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
 <title>Classrooms</title>
 <%@ page isELIgnored="false"%>
 </head>
 
-<body>
+<body class="text-center">
 
-	<h2>Classrooms</h2>
-	<table>
+	<h2 class="text-muted">Classrooms</h2>
+	<table class="table table-striped">
 		<tr>
 			<th>id</th>
 			<th>name</th>
 			<th>action</th>
 		</tr>
 		<c:forEach var="classroom" items="${classrooms}">
-			<tr>
-				<td>${classroom.id}</td>
-				<td>${classroom.name}</td>
+			<tr class="align-middle">
+				<td class="align-middle">${classroom.id}</td>
+				<td class="align-middle">${classroom.name}</td>
 				<td>
-				<a href="/classroom/${classroom.name}">List all students</a><br/>
-				<a href="/${classroom.name}/add">Add new student</a>
+				<a href="/classroom/${classroom.name}" class="btn btn-outline-secondary btn-sm m-1">List all students</a><br/>
+				<a href="/${classroom.name}/add" class="btn btn-outline-secondary btn-sm m-1">Add new student</a>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
 	
-	<a href="/">Back to main</a>
+	<a href="/" class="btn btn-secondary">Back to main</a>
+	
 </body>
 </html>
