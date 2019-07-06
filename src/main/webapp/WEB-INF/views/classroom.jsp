@@ -13,6 +13,8 @@
 <body class="text-center">
 
 	<h2 class="text-muted">Students of class ${classroomName}</h2>
+		<div class="row">
+	<div class="col-sm-10 offset-sm-1">
 	<table class="table table-striped">
 		<tr>
 			<th>id</th>
@@ -32,6 +34,7 @@
 			</tr>
 		</c:forEach>
 	</table>
+	</div></div>
 	<a href="/classrooms" class="btn btn-secondary">Back to classrooms list</a>
 	
 </body>

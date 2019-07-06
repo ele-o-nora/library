@@ -13,6 +13,8 @@
 <body class="text-center">
 
 	<h2 class="text-muted">Classrooms</h2>
+	<div class="row">
+	<div class="col-sm-6 offset-sm-3">
 	<table class="table table-striped">
 		<tr>
 			<th>id</th>
@@ -30,7 +32,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-	
+	</div></div>
 	<a href="/" class="btn btn-secondary">Back to main</a>
 	
 </body>

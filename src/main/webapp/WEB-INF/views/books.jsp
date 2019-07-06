@@ -21,6 +21,8 @@
 		<c:if test="${!empty author}">Books by ${author}</c:if>
 		<c:if test="${(!empty studentId) and (empty genre) and (empty country) and (empty author)}">Checked books</c:if>
 	</h2>
+	<div class="row">
+	<div class="col-sm-8 offset-sm-2">
 	<table class="table table-striped">
 		<tr>
 			<th>id</th>
@@ -62,6 +64,8 @@
 			</c:if>
 		</c:forEach>
 	</table>
+	</div>
+	</div>
 	<c:if test="${empty studentId}">
 		<a href="/findbook" class="btn btn-secondary">Back to search</a>
 	</c:if>

@@ -17,11 +17,11 @@
 	<form action="/add" method="POST">
 		<input type="hidden" name="classroomName" value="${classroomName}" />
 		<div class="form-row">
-			<div class="col">
+			<div class="col-sm-4 offset-sm-2">
 				<input type="text" class="form-control" name="firstName"
 					id="firstName" placeholder="First name" />
 			</div>
-			<div class="col">
+			<div class="col-sm-4">
 				<input type="text" class="form-control" name="lastName"
 					id="lastName" placeholder="Last name" />
 			</div>

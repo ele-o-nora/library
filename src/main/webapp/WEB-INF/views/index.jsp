@@ -12,7 +12,7 @@
 
 <body class="text-center">
 
-	<h2 class="text-warning">Library</h2>
+	<h2 class="text-info">Library</h2>
 	<a href="/classrooms" class="btn btn-secondary">List all classrooms</a>
 	<a href="/findbook" class="btn btn-secondary">Find books</a>
 

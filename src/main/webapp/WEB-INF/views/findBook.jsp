@@ -13,6 +13,8 @@
 <body class="text-center">
 	
 	<h2 class="text-muted">Find book</h2>
+	<div class="row">
+	<div class="col-sm-6 offset-sm-3">
 	<form action="/bygenre" method="GET">
 		<c:if test="${!empty studentId}"><input type="hidden" name="studentId" value="${studentId}"></c:if>
 		<select name="genre" class="custom-select">
@@ -42,6 +44,6 @@
 		</select>
 		<input type="submit" value="Search by author" class="btn btn-outline-secondary btn-sm m-1"/>
 	</form>
-
+	</div></div>
 </body>
 </html>
