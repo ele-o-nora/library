@@ -31,9 +31,11 @@
 			<c:if test="${(!empty genre) or (!empty author) or (!empty country)}">
 				<th>available</th>
 			</c:if>
+			<sec:authorize access="!hasRole('ROLE_ANONYMOUS')">
 			<c:if test="${!empty studentId}">
 				<th>action</th>
 			</c:if>
+			</sec:authorize>
 		</tr>
 		<c:forEach var="book" items="${books}">
 		<c:if test="${book.available > 0 or (empty studentId) or ((empty genre) and (empty country) and (empty author))}">
@@ -43,6 +45,7 @@
 				<c:if test="${(!empty genre) or (!empty author) or (!empty country)}">
 					<td>${book.available}</td>
 				</c:if>
+				<sec:authorize access="!hasRole('ROLE_ANONYMOUS')">
 				<c:if test="${(!empty studentId) and (empty genre) and (empty country) and (empty author)}">
 				<td>
 					<form method="POST" action="/returnbook">
@@ -63,6 +66,7 @@
 					</form>
 				</td>
 				</c:if>
+				</sec:authorize>
 			</tr>
 			</c:if>
 		</c:forEach>
