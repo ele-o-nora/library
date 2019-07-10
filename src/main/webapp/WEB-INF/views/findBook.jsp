@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,7 @@
 			<option value = "${genre.name}">${genre.name}</option>
 		</c:forEach>
 		</select>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="submit" value="Search by genre" class="btn btn-outline-secondary btn-sm m-1"/>
 	</form>
 	
@@ -32,6 +34,7 @@
 			<option value = "${country.name}">${country.name}</option>
 		</c:forEach>
 		</select>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="submit" value="Search by country" class="btn btn-outline-secondary btn-sm m-1"/>
 	</form>
 	
@@ -42,8 +45,16 @@
 			<option value = "${author.firstName} ${author.lastName}">${author.firstName} ${author.lastName}</option>
 		</c:forEach>
 		</select>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="submit" value="Search by author" class="btn btn-outline-secondary btn-sm m-1"/>
 	</form>
 	</div></div>
+	
+	<sec:authorize access="!hasRole('ROLE_ANONYMOUS')">
+		<form action="/logout" method="POST">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<input type="submit" value="Logout" class="btn btn-info m-1"/>
+		</form>
+	</sec:authorize>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,5 +36,11 @@
 	</div></div>
 	<a href="/" class="btn btn-secondary">Back to main</a>
 	
+	<sec:authorize access="!hasRole('ROLE_ANONYMOUS')">
+		<form action="/logout" method="POST">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<input type="submit" value="Logout" class="btn btn-info m-1"/>
+		</form>
+	</sec:authorize>
 </body>
 </html>

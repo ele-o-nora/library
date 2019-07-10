@@ -10,4 +10,10 @@ public class MainController {
 	public String mainPage(Model model) {
 		return "index";
 	}
+	
+	@RequestMapping("/login")
+	public String login(Model model) {
+		return "login";
+	}
+	
 }

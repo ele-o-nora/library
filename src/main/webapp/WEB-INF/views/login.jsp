@@ -7,27 +7,28 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
-<title>Add student</title>
+<title>Sign in</title>
 <%@ page isELIgnored="false"%>
 </head>
 
 <body class="text-center">
-
-	<h2 class="text-muted">Add new student</h2>
-	<form action="/add" method="POST">
-		<input type="hidden" name="classroomName" value="${classroomName}" />
+	<c:if test="${!empty param.error}">
+	<p class="text-danger">Bad credentials!</p>
+	</c:if>
+	<h2 class="text-muted">Please sign in</h2>
+	<form action="/perform_login" method="POST">
 		<div class="form-row">
 			<div class="col-sm-4 offset-sm-2">
-				<input type="text" class="form-control" name="firstName"
-					id="firstName" placeholder="First name" />
+				<input type="text" class="form-control" name="username"
+					placeholder="Username" />
 			</div>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" name="lastName"
-					id="lastName" placeholder="Last name" />
+				<input type="password" class="form-control" name="password"
+					placeholder="Password" />
 			</div>
 		</div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-		<input type="submit" value="Add student"
+		<input type="submit" value="Submit"
 			class="btn btn-outline-secondary m-1" />
 	</form>
 
