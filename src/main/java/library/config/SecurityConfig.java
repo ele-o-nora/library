@@ -12,12 +12,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import library.services.LibraryUserDetailsService;
+import lombok.Setter;
 
 @Configuration
 @EnableWebSecurity
+@Setter(onMethod=@__(@Autowired))
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	@Autowired
 	private LibraryUserDetailsService userDetailsService;
 	
 	@Override
