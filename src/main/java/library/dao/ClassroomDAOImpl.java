@@ -27,8 +27,9 @@ public class ClassroomDAOImpl implements ClassroomDAO {
 	
 	@Override
 	public List<Classroom> getAllClassrooms() {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		List<Classroom> list = session.createQuery("from Classroom c order by c.id", Classroom.class).getResultList();
+		session.close();
 		return list;
 	}
 	

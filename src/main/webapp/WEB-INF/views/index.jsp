@@ -16,7 +16,7 @@
 	<h2 class="text-info">Library</h2>
 	<a href="/classrooms" class="btn btn-secondary">List all classrooms</a>
 	<a href="/findbook" class="btn btn-secondary">Find books</a>
-	<sec:authorize access="!hasRole('ROLE_ANONYMOUS')">
+	<sec:authorize access="isAuthenticated()">
 		<form action="/logout" method="POST">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		<input type="submit" value="Logout" class="btn btn-info m-1"/>

@@ -16,7 +16,6 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@Transactional(readOnly=true)
 @RequiredArgsConstructor(onConstructor=@__(@Autowired))
 public class BookServiceImpl implements BookService {
 	
@@ -36,6 +35,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public void listAllBooksByGenre(Model model, String genre, int studentId) {
 		if (studentId > 0) {
 			model.addAttribute("studentId", studentId);
@@ -47,6 +47,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public void listAllBooksByAuthor(Model model, String authorName, int studentId) {
 		if (studentId > 0) {
 			model.addAttribute("studentId", studentId);
@@ -59,6 +60,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public void listAllBooksFromCountry(Model model, String country, int studentId) {
 		if (studentId > 0) {
 			model.addAttribute("studentId", studentId);

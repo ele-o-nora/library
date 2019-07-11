@@ -43,22 +43,25 @@ public class BookDAOImpl implements BookDAO {
 
 	@Override
 	public List<Genre> getAllGenres() {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		List<Genre> genres = session.createQuery("from Genre", Genre.class).getResultList();
+		session.close();
 		return genres;
 	}
 
 	@Override
 	public List<Country> getAllCountries() {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		List<Country> countries = session.createQuery("from Country", Country.class).getResultList();
+		session.close();
 		return countries;
 	}
 
 	@Override
 	public List<Author> getAllAuthors() {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		List<Author> authors = session.createQuery("from Author a order by a.lastName, a.firstName", Author.class).getResultList();
+		session.close();
 		return authors;
 	}
 

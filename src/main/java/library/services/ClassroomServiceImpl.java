@@ -20,7 +20,6 @@ public class ClassroomServiceImpl implements ClassroomService {
 	private final @NonNull ClassroomDAO classroomDAO;
 	
 	@Override
-	@Transactional(readOnly=true)
 	public void getAllClassrooms(Model model) {
 		List<Classroom> classrooms =  classroomDAO.getAllClassrooms();
 		model.addAttribute("classrooms", classrooms);
