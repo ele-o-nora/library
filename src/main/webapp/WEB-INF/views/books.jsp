@@ -73,14 +73,15 @@
 	</table>
 	</div>
 	</div>
+	<div class="row">
 	<c:if test="${empty studentId}">
-		<a href="/findbook" class="btn btn-secondary">Back to search</a>
+		<a href="/findbook" class="btn btn-secondary col-sm-2 offset-sm-4">Back to search</a>
 	</c:if>
 	<c:if test="${!empty studentId}">
-		<a href="/findbook?studentId=${studentId}" class="btn btn-secondary">Checkout another book</a>
+		<a href="/findbook?studentId=${studentId}" class="btn btn-secondary col-sm-2 offset-sm-4">Checkout another book</a>
 	</c:if>
-	<a href="/" class="btn btn-secondary">Back to main</a>
-	
+	<a href="/" class="btn btn-secondary col-sm-2 ml-1">Back to main</a>
+	</div>
 	<sec:authorize access="!hasRole('ROLE_ANONYMOUS')">
 		<form action="/logout" method="POST">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

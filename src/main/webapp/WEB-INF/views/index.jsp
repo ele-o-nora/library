@@ -14,8 +14,10 @@
 <body class="text-center">
 
 	<h2 class="text-info">Library</h2>
-	<a href="/classrooms" class="btn btn-secondary">List all classrooms</a>
-	<a href="/findbook" class="btn btn-secondary">Find books</a>
+	<div class="row">
+	<a href="/classrooms" class="btn btn-secondary col-sm-2 offset-sm-4">List all classrooms</a>
+	<a href="/findbook" class="btn btn-secondary col-sm-2 ml-1">Find books</a>
+	</div>
 	<sec:authorize access="isAuthenticated()">
 		<form action="/logout" method="POST">
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
