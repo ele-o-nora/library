@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,6 +40,7 @@ public class Student {
 	@JoinColumn(name="classroom_id")
 	private Classroom classroom;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="student")
 	private List<Checkout> checkedList;
 	
